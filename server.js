@@ -72,30 +72,51 @@ app.get('/cats/:id',function(req,res){
             console.log(`error while finding a cat with id ${req.params.id}`);
         }else{
             console.log(`got that cat! ${theCat}`);
-            res.render('catProfile',{cat:theCat});
+            res.render('catProfile',{cat:theCat[0]});
         }
     });
 })
- 
 
-// Add User Request 
-// app.post('/users', function(req, res) {
-//     console.log("POST DATA", req.body);
-//     // create a new User with the name and age corresponding to those from req.body
-//     var user = new User({name: req.body.name, age: req.body.age});
-//     // try to save that new user to the database (this method that actually inserts into the db) and run a callback
-//     // function with an error (if any) from the operation.
-//     user.save(function(err){
-//         //if there is an error console.log that something went wrong!
-//         if(err){
-//             console.log('something went wrong');
-//         } else//else console.log we did well and then redirect to the root route.
-//             {
-//                 console.log('successfully added a user!');
-//                 res.redirect('/');
-//             }
-//         })
-//     })
+app.get('/cats/edit/:id',function(req,res){
+    Cat.find({'_id' : req.params.id}, function(err, theCat){
+        if (err){
+            console.log(`error while finding a cat with id ${req.params.id}`);
+            return handleError(err);
+        }else{
+            console.log(`got that cat! ${theCat}`);
+            res.render('editCatProfile',{cat:theCat[0]});
+        }
+
+    })
+});
+
+app.post('/cats/:id', function(req,res){
+    // var cat1 = Cat.find({'_id':req.params.id}, function(err, theCat){
+        Cat.findByIdAndUpdate({'_id':req.params.id}, 
+            {$set: {name : req.body.name, color: req.body.color}},{new: true},function(err, theCat){
+        if (err){
+            console.log(`error while finding a cat with id ${req.params.id}`);
+            return handleError(err);
+        }else{
+            //res.render('catProfile',{cat:theCat});
+            res.redirect('/');
+        }
+    })
+})
+
+app.post('/cats/destroy/:id', function(req,res){
+    Cat.deleteOne({'_id':req.params.id},function(err,theCat){
+        if (err){
+            console.log(`error while deleting a cat with id ${req.params.id}`);
+            return handleError(err);
+        }else{
+            console.log(`deleted!`);
+            res.redirect('/');
+        }
+
+    })
+})
+
     
 
 // Setting our Server to Listen on Port: 8000

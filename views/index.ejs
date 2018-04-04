@@ -23,6 +23,12 @@
                     <td><%= cats[cat]._id %></td>
                     <td><a href="cats/<%= cats[cat]._id %>"><%= cats[cat].name %></a></td>
                     <td><%= cats[cat].color %></td>
+                    <td><a href="/cats/edit/<%= cats[cat]._id %>">Edit</a>
+                        <form action="/cats/destroy/<%= cats[cat]._id %>" method="post">
+                            <input type = 'submit', value = 'Delete'>
+                        </form>
+                        </td>
+                    
                 </tr>
                 <% } %>
 
