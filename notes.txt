@@ -1,0 +1,25 @@
+This exercise will allow you to utilize all 4 CRUD methods with Mongoose. 
+In this exercise, you'll build an app which manages a pack of some kind of animal (think otter, rabbit, or owl). 
+You need to be able to add a new animal, update it, and delete it. You should use the following routes to build this app:
+
+-GET '/' Displays all of the mongooses.
+GET '/mongooses/:id' Displays information about one mongoose.
+-GET '/mongooses/new' Displays a form for making a new mongoose.
+-POST '/mongooses' Should be the action attribute for the form in the above route (GET '/mongooses/new').
+-GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
+-POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
+-POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
+Remember these routes are just examples, avoid using mongooses for your dashboard if you can!
+
+Create Cats with attributes name and color
+
+-1. we need a CatSchema
+-2. GET form to create a cat at '/cats/new' - action is '/cats' POST
+-    2a. POST '/cats' route will save the cat to the database.
+-3. GET display all of the cats at '/'
+-4. Displays information about one mongoose. GET '/mongooses/:id'
+4. GET show a form to edit an existing cat '/cats/edit/:id' - action is '/cats/:id' POST
+5. POST Should delete the mongoose from the database by ID '/mongooses/destroy/:id'
+
+                    <p><%= `Name:${cats[cat].name}` %></p>
+                    <p><%= `Color:${cats[cat].color}`%> </p>

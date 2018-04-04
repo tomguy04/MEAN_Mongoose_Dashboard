@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cat Profile</title>
+</head>
+<body>
+    <% for (var data in cat){ %>
+        <p><%= `Name: ${cat[data].name}` %></p>
+        <p><%= `Color: ${cat[data].color}` %></p>
+    <% } %>
+    
+
+</body>
+</html>
